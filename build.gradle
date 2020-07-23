@@ -1,0 +1,71 @@
+group 'com.ddf'
+version '1.0.0'
+
+
+def javaProjects = [project(':maktub-service-core'),
+                    project(':maktub-common'),
+                    project(':maktub-common-db'),
+                    project(':maktub-common-shiro')]
+def bootProjects = [project(':maktub-service-core')]
+
+configure(javaProjects) {
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: "io.spring.dependency-management"
+
+    def vJavaLang = '1.8'
+
+    targetCompatibility = vJavaLang
+    sourceCompatibility = vJavaLang
+
+    repositories {
+        mavenLocal()
+    }
+
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.SR4'
+        }
+    }
+
+
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter-web')
+        compile('org.springframework.boot:spring-boot-devtools')
+
+        compile("com.alibaba:fastjson:1.2.31")
+        compile("org.apache.commons:commons-lang3:3.5")
+        compile("commons-io:commons-io:2.5")
+        compile("commons-configuration:commons-configuration:1.10")
+        compile("org.projectlombok:lombok:1.18.2")
+    }
+
+}
+
+configure(bootProjects) {
+    apply plugin: 'org.springframework.boot'
+
+}
+
+
+buildscript {
+    ext {
+        springBootVersion = '2.0.6.RELEASE'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+
+
+

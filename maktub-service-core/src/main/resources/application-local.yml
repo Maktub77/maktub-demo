@@ -1,0 +1,69 @@
+spring:
+  datasource:
+          type: com.alibaba.druid.pool.DruidDataSource
+          driverClassName: com.mysql.jdbc.Driver
+          druid:
+              default:  #数据源1
+                  url: ${DMP_DB_URL:jdbc:mysql://127.0.0.1:3306/maktub-boot-provider?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false}
+                  username: ${DMP_DB_USERNAME:root}
+                  password: ${DMP_DB_PWD:root}
+              initial-size: 10
+              max-active: 100
+              min-idle: 10
+              max-wait: 60000
+              pool-prepared-statements: true
+              max-pool-prepared-statement-per-connection-size: 20
+              time-between-eviction-runs-millis: 60000
+              min-evictable-idle-time-millis: 300000
+              #validation-query: SELECT 1
+              test-while-idle: true
+              test-on-borrow: false
+              test-on-return: false
+              stat-view-servlet:
+                  enabled: true
+                  url-pattern: /druid/*
+                  #login-username: admin
+                  #login-password: admin
+              filter:
+                  stat:
+                      log-slow-sql: true
+                      slow-sql-millis: 1000
+                      merge-sql: true
+                  wall:
+                      config:
+                          multi-statement-allow: true
+
+  redis:
+    port: 6379
+    host: ${DMP_REDIS_IP:127.0.0.1}
+    password: ${DMP_REDIS_PWD:}
+    database: 3
+    timeout: 1s
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 50
+        min-idle: 0
+        max-wait: -1ms
+
+logging:
+  level: debug
+  level.org.ddf.ddf.maktub: debug
+
+# 开发工具，禁止复制到别处环境
+codex:
+  jdbc:
+    url: jdbc:mysql://127.0.0.1:3306/maktub-boot-provider?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+  package:
+    entity-path: com.ddf.maktub.db.entity
+    mapper-path: com.ddf.maktub.db.mapper
+    mapperXML-path: mapper
+    service-path: com.ddf.maktub.db.service
+    serviceImpl-path: com.ddf.maktub.db.service.impl
+    controller-path: com.ddf.maktub.db.service
+  prefix: cd_
+apix:
+  controllerPackage: com.ddf.maktub.core.controller

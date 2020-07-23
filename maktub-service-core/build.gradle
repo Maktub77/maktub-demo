@@ -1,0 +1,15 @@
+
+
+dependencies {
+    compile project(":maktub-common")
+    compile project(":maktub-common-db")
+    compile project(":maktub-common-shiro")
+    compile("org.webjars:webjars-locator-core")
+    compile("org.webjars:jquery:3.1.1")
+    compile("org.webjars:bootstrap:3.3.7-1")
+    compile("org.webjars.npm:element-ui:2.4.8")
+    compile("org.webjars.npm:vue:2.5.17")
+    compile("org.webjars.npm:vue-resource:1.5.1")
+    compile("pub.codex:codex-index:3.2.14")
+    compile("pub.codex:codex-core-template-mybatis-plus:3.2.14")
+}

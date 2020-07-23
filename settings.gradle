@@ -1,0 +1,6 @@
+rootProject.name = 'maktub-demo'
+include 'maktub-service-core'
+include 'maktub-common'
+include 'maktub-common-shiro'
+include 'maktub-common-db'
+

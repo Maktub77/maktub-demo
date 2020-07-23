@@ -1,0 +1,18 @@
+
+
+dependencies {
+
+    compile project(":maktub-common")
+    compile("org.springframework.boot:spring-boot-starter-cache")
+    compile("org.springframework.boot:spring-boot-starter-data-redis")
+    compile("mysql:mysql-connector-java:5.1.21")
+    compile("com.alibaba:druid-spring-boot-starter:1.1.10")
+    compile("com.baomidou:mybatis-plus:2.1.9")
+    compile("com.baomidou:mybatisplus-spring-boot-starter:1.0.5")
+
+
+    compile("org.springframework.cloud:spring-cloud-context")
+
+    compile("org.springframework.boot:spring-boot-starter-aop")
+
+}
